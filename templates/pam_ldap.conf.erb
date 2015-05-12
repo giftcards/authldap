@@ -1,0 +1,26 @@
+##########################
+### ** Do Not Modify **
+###
+###    == Puppet ==
+##########################
+uri <%= @ldapServer %>
+base <%= @baseDC %>
+binddn <%= @bindUser %>
+bindpw <%= @bindPassword %>
+scope sub 
+nss_base_passwd <%= @nssBasePasswd %> 
+nss_base_shadow <%= @nssBaseShadow %>
+nss_base_group <%= @nssBaseGroup %>
+nss_map_objectclass posixAccount user
+nss_map_objectclass shadowAccount user
+nss_map_objectclass posixGroup Group
+nss_map_attribute homeDirectory unixHomeDirectory
+nss_map_attribute uniqueMember member
+nss_map_attribute shadowLastChange pwdLastSet
+pam_login_attribute uid
+pam_filter objectClass=user
+pam_password ad
+pam_member_attribute member
+ssl <%= @ssl %>
+tls_cacertfile <%= @cacert %>
+tls_reqcert <%= @tlsReqcert %>

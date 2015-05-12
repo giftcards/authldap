@@ -1,0 +1,27 @@
+##########################
+### ** Do Not Modify **
+###
+###    == Puppet ==
+##########################
+uri <%= @ldapServer %>
+binddn <%= @bindUser %>
+bindpw <%= @bindPassword %>
+scope sub
+base <%= @baseDC %> 
+scope group sub
+scope hosts sub
+pagesize 1000
+referrals off
+filter passwd (objectClass=user)
+map passwd homeDirectory unixHomeDirectory
+filter shadow (objectClass=user)
+map shadow shadowLastChange pwdLastSet
+filter group (objectClass=group)
+map group uniqueMember member
+uid nslcd
+gid ldap
+ssl <%= @ssl %>
+tls_cacertfile <%= @cacert %>
+tls_reqcert <%= @tlsReqcert %>
+
+# force recycle 2/4
